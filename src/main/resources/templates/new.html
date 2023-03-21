@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add products </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Control products</a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/new">Add product</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+
+<br>
+  <div class="container ">
+      <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card ">
+              <h1 class="text-center">
+                  Register your products
+              </h1>
+              <div class="card-body">
+                  <form th:action="@{/save}"  th:object="${products}" method="post">
+                      <div class="form-group">
+                          <label >Product name :</label>
+                          <input type="text" name="name" th:fiel="*{name}" class="form-control" placeholder="Enter your product name" required>
+                      </div>
+                      <div class="form-group">
+                          <label >Brand :</label>
+                          <input type="text" name="brand" th:fiel="*{brand}" class="form-control" placeholder="Enter your product brand" required>
+                      </div>
+                      <div class="form-group">
+                          <label >Made In :</label>
+                          <input type="text" name="madeIn" th:fiel="*{madeIn}" class="form-control" placeholder="Enter your product origin" required>
+                      </div>
+                      <div class="form-group">
+                          <label >Price :</label>
+                          <input type="number" name="price" th:fiel="*{price}" class="form-control" placeholder="0.0" required>
+                      </div>
+
+                      <div class="box-footer">
+                          <button class="btn btn-success">Save</button>
+                      </div>
+                  </form>
+              </div>
+
+          </div>
+      </div>
+
+  </div>
+
+</body>
+</html>
