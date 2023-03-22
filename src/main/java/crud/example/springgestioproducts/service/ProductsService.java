@@ -13,15 +13,18 @@ public class ProductsService {
     @Autowired
     private ProductosRepository productosRepository;
 
-    public List<Products> listAll(){
+    public List<Products> listAll(String keyWord){
+        if (keyWord != null){
+            return productosRepository.findAll(keyWord);
+        }
         return productosRepository.findAll();
     }
 
-    public void save(Products products){         //To save
+    public void save(Products products){
         productosRepository.save(products);
     }
 
-    public Products get(Long id){               //To get or find the products
+    public Products get(Long id){
         return productosRepository.findById(id).get();
     }
 

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Products control</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
 
@@ -23,36 +24,58 @@
     </div>
 </nav>
 <br>
-   <div class="container ">
-       <table class="table">
-           <thead class="thead-dark">
-           <tr>
-               <th scope="col">Id</th>
-               <th scope="col">Name</th>
-               <th scope="col">Brand</th>
-               <th scope="col">Made in</th>
-               <th scope="col">Price</th>
-               <th scope="col">Actions </th>
-           </tr>
-           </thead>
-           <tbody>
-           <tr th:each="products : ${productsList}">
-               <td th:text="${products.id}"></td>
-               <td th:text="${products.name}"></td>
-               <td th:text="${products.brand}"></td>
-               <td th:text="${products.madeIn}"></td>
-               <td th:text="${products.price}"></td>
-               <td>
-                   <a class="btn btn-primary" th:href="@{'/edit/' + ${products.id}}">Edit</a>
-               </td>
+<div class="container ">
+
+    <form action="" class="form-inline" th:action="@{/}">
+        <div class="form-group mb-2">
+            <label>Search for your products :</label>
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <input type="text" name="keyWord" class="form-control" id="keyWord" th:value="${keyWord}"
+                   placeholder="Enter product" required>
+        </div>
+        <input type="submit" class="btn btn-info mb-2" value="Search">
+        &nbsp;&nbsp;
+        <input type="button" class="btn btn-secondary mb-2" value="Clean" onclick="cleanField()">
+    </form>
 
 
-           </tr>
-       </table>
-
-   </div>
+    <br>
 
 
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Made in</th>
+            <th scope="col">Price</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="products : ${productsList}">
+            <td th:text="${products.id}"></td>
+            <td th:text="${products.name}"></td>
+            <td th:text="${products.brand}"></td>
+            <td th:text="${products.madeIn}"></td>
+            <td th:text="${products.price}"></td>
+            <td>
+                <a class="btn btn-primary" th:href="@{'/edit/' + ${products.id}}">Edit</a>
+                &nbsp
+                <a class="btn btn-danger" th:href="@{'/delete/' + ${products.id}}">Delete</a>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+  <script type="text/javascript">
+        function cleanField(){
+        window.location ='/';
+      }
+  </script>
 
 </body>
 </html>
