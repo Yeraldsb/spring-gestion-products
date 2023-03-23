@@ -7,7 +7,7 @@ The application allows you to perform basic CRUD operations on a list of items s
 
 To get started with this application, you will need to do the following:
 
-<strong>1 - </strong> Clone the repository to your local machine using git clone https://github.com/Yeraldsb/spring-gestion-products <br>
+<strong>1 - </strong> Clone the repository to your local machine using git clone https://github.com/Yeraldsb/spring-gestion-product <br>
 <strong>2 - </strong> Open the project in your favorite IDE (such as IntelliJ IDEA or Eclipse)<br>
 <strong>3 - </strong> Update the application.properties file located in the src/main/resources directory to include your MySQL database connection details,
 such as the username, password, and database name with your own details<br>

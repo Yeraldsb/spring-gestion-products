@@ -9,7 +9,7 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">Control products</a>
+    <a class="navbar-brand" href="/">Control product</a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
@@ -24,7 +24,7 @@
 
     <form action="" class="form-inline" th:action="@{/}">
         <div class="form-group mb-2">
-            <label>Search for your products :</label>
+            <label>Search for your product :</label>
         </div>
         <div class="form-group mx-sm-3 mb-2">
             <input type="text" name="keyWord" class="form-control" id="keyWord" th:value="${keyWord}"
@@ -51,16 +51,16 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="products : ${productsList}">
-            <td th:text="${products.id}"></td>
-            <td th:text="${products.name}"></td>
-            <td th:text="${products.brand}"></td>
-            <td th:text="${products.madeIn}"></td>
-            <td th:text="${products.price}"></td>
+        <tr th:each="product : ${productsList}">
+            <td th:text="${product.id}"></td>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.brand}"></td>
+            <td th:text="${product.madeIn}"></td>
+            <td th:text="${product.price}"></td>
             <td>
-                <a class="btn btn-primary" th:href="@{'/edit/' + ${products.id}}">Edit</a>
+                <a class="btn btn-primary" th:href="@{'/edit/' + ${product.id}}">Edit</a>
                 &nbsp
-                <a class="btn btn-danger" th:href="@{'/delete/' + ${products.id}}">Delete</a>
+                <a class="btn btn-danger" th:href="@{'/delete/' + ${product.id}}">Delete</a>
             </td>
         </tr>
     </table>

@@ -1,7 +1,7 @@
 package crud.example.springgestioproducts;
 
 
-import crud.example.springgestioproducts.entitys.Products;
+import crud.example.springgestioproducts.entitys.Product;
 import crud.example.springgestioproducts.repository.ProductosRepository;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -38,8 +38,8 @@ public class ProductTest {
     @Rollback(false)
     @Order(1)
     public void createAndSaveProductTest() {
-        Products products = new Products(10L, "Plasma TV", "Apple", "USA", 200);
-        Products savedProduct = productosRepository.save(products);
+        Product product = new Product(10L, "Plasma TV", "Apple", "USA", 200);
+        Product savedProduct = productosRepository.save(product);
 
         assertNotNull(savedProduct);
     }
@@ -55,9 +55,9 @@ public class ProductTest {
         }, "The product that you are searching for does not exist");
 */
         String name = "Phone 222";
-        Products products = productosRepository.findByName(name);
+        Product product = productosRepository.findByName(name);
 
-        assertThat(products.getName()).isEqualTo(name);
+        assertThat(product.getName()).isEqualTo(name);
     }
 
     /**
@@ -68,9 +68,9 @@ public class ProductTest {
     public void searchProductByNameIfIsAlreadyOnYourDataBase() {
 
         String name = "Phone 11";
-        Products products = productosRepository.findByName(name);
+        Product product = productosRepository.findByName(name);
 
-        assertNull(products);
+        assertNull(product);
     }
 
     /**
@@ -85,15 +85,37 @@ public class ProductTest {
     @Rollback(false)
     @Order(3)
     public void updateProductTest() {
-        String productName = "IPhone 14";
-        Products products = new Products(1l, productName, "HP", "USA", 1500);
-        //products.setId(1L); it is although possible to search and set the id here
-        productosRepository.save(products);
+        String productName = "CARMELA";
+        Product product = new Product(1l, productName, "HP", "USA", 1500);
+       // products.setId(1L);
+        productosRepository.save(product);
 
         //Preguntar Javi como añadir test o exception si el ID no es correcto using AssertsThrows or if any changes has been made
 
-        Products savedProduct = productosRepository.findByName(productName);
+        Product savedProduct = productosRepository.findByName(productName);
         assertThat(savedProduct.getName()).isEqualTo(productName);
+    }
+
+    @Test
+    @Rollback(false)
+    public void updateProductTestAndMakeSureChangesHasBeenMade() {
+        String productName = "JAVI";
+        Product product = new Product(1l, productName, "HP", "USA", 1500);
+
+        if (productName.equals(product.getName())){
+            System.out.println("There has been a problem");
+        }else{
+
+            productosRepository.save(product);
+            Product savedProduct = productosRepository.findByName(productName);
+            assertThat(savedProduct.getName()).isEqualTo(productName);
+        }
+        // products.setId(1L);
+
+
+        //Preguntar Javi como añadir test o exception si el ID no es correcto using AssertsThrows or if any changes has been made
+
+
     }
 
     /**
@@ -103,8 +125,8 @@ public class ProductTest {
     @Test
     @Order(5)
     public void listOfProducts(){
-        List<Products> products = productosRepository.findAll();
-        for (Products productList : products){
+        List<Product> products = productosRepository.findAll();
+        for (Product productList : products){
             System.out.println(productList);
         }
         assertThat(products).size().isGreaterThan(0);
