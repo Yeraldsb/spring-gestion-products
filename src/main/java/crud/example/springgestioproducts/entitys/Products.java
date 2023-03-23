@@ -70,8 +70,19 @@ public class Products {
         this.price = price;
     }
 
-    public Products(){
+    public Products() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "Products{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", brand='" + brand + '\'' +
+                ", madeIn='" + madeIn + '\'' +
+                ", price=" + price +
+                '}';
     }
 
 
